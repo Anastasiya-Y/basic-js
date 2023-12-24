@@ -16,23 +16,26 @@ function getSeason(date) {
     return 'Unable to determine the time of year!';
   }
   try {
-    const month = date.getMonth();
-    if ((month >= 0 && month < 2) || month === 11) {
-      return 'winter';
-    } else if (month >= 2 && month < 5) {
-      return 'spring';
-    } else if (month >= 5 && month < 8) {
-      return 'summer';
-    } else if (month >= 8 && month < 11) {
-      return 'autumn';
-    }
+      if (date instanceof Date && !isNaN(date)) {
+        const month = date.getMonth();
+        if ((month >= 0 && month < 2) || month === 11) {
+          return 'winter';
+        } else if (month >= 2 && month < 5) {
+          return 'spring';
+        } else if (month >= 5 && month < 8) {
+          return 'summer';
+        } else if (month >= 8 && month < 11) {
+          return 'autumn';
+        }
+      }
+      else {
+        throw new Error('Invalid date!');
+      }
   } catch {
-    if (!(date instanceof Date)) {
-      throw new Error('Invalid date!');
-    }
     if (Object.getOwnPropertyNames(date)) {
       throw new Error('Invalid date!');
     }
+
   }
 
 }

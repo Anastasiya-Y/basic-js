@@ -1,29 +1,29 @@
-const { NotImplementedError } = require('../extensions/index.js');
+const { NotImplementedError } = require('../lib');
 
 /**
  * Implement class VigenereCipheringMachine that allows us to create
  * direct and reverse ciphering machines according to task description
- * 
+ *
  * @example
- * 
+ *
  * const directMachine = new VigenereCipheringMachine();
- * 
+ *
  * const reverseMachine = new VigenereCipheringMachine(false);
- * 
+ *
  * directMachine.encrypt('attack at dawn!', 'alphonse') => 'AEIHQX SX DLLU!'
- * 
+ *
  * directMachine.decrypt('AEIHQX SX DLLU!', 'alphonse') => 'ATTACK AT DAWN!'
- * 
+ *
  * reverseMachine.encrypt('attack at dawn!', 'alphonse') => '!ULLD XS XQHIEA'
- * 
+ *
  * reverseMachine.decrypt('AEIHQX SX DLLU!', 'alphonse') => '!NWAD TA KCATTA'
- * 
+ *
  */
 class VigenereCipheringMachine {
   getMatrix() {
     let alphabet = Array.from('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
     let arr = [];
-    
+
     for (let i = 0; i < alphabet.length; i++) {
       let subArr = [];
       for (let j = 0; j < alphabet.length; j++) {
@@ -33,7 +33,7 @@ class VigenereCipheringMachine {
       const letter = alphabet.shift();
       alphabet.push(letter);
     }
-    
+
     return arr;
   }
 
@@ -56,12 +56,15 @@ class VigenereCipheringMachine {
 
     return result;
   }
+
   decrypt() {
+    // Remove line below and write your code here
     throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
   }
 }
 
 module.exports = {
-  VigenereCipheringMachine
+  directMachine: new VigenereCipheringMachine(),
+  reverseMachine: new VigenereCipheringMachine(false),
+  VigenereCipheringMachine,
 };
